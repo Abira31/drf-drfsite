@@ -19,7 +19,8 @@ from django.urls import path,include
 from rest_framework import routers
 
 from women import views
-router = routers.SimpleRouter()
+router = routers.DefaultRouter()
+router.register(r'women',views.WomenListAPIView)
 router.register(r'women',views.WomenAPIViewSet)
 
 
