@@ -16,15 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
-from rest_framework import routers
-
 from women import views
-router = routers.DefaultRouter()
-router.register(r'women',views.WomenListAPIView)
-router.register(r'women',views.WomenAPIViewSet)
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/',include(router.urls))
+    path('api/v1/women/',views.WomenAPIList.as_view(),
+         name=views.WomenAPIList.name),
+    path('api/v1/women/<int:pk>/',views.WomenAPIUpdate.as_view(),
+         name=views.WomenAPIUpdate.name),
+    path('api/v1/women/<int:pk>/delete/',views.WomenAPIDestroy.as_view()),
+    path('api/v1/women/create/',views.WomenAPICreate.as_view()),
+
 ]

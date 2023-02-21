@@ -7,12 +7,13 @@ class CatSerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 class WomenSerializerList(serializers.ModelSerializer):
-    cat = CatSerializer(read_only=True)
     class Meta:
         model = Women
-        fields = ['pk','title','content','cat']
+        fields = ['url','pk','title','content','cat','user']
 class WomenSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = Women
-        fields = ['pk','title','content','cat']
+        fields = '__all__'
+
 
