@@ -19,7 +19,7 @@ class WomenAPICreate(generics.CreateAPIView):
 class WomenAPIUpdate(generics.RetrieveUpdateAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
-    permission_classes = (IsWonerOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
     name = 'women-detail'
 
 class WomenAPIDestroy(generics.RetrieveDestroyAPIView):
